@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* ألوان الهوية البصرية الفاخرة لـ ELOR */
+  --color-black: #0a0a0a;
+  --color-card: #141414;
+  --color-gold: #c6a47e;
+  --color-gold-light: #e2c5a3;
+  --color-gold-dark: #a3825f;
+}
+
+body {
+  background-color: var(--color-black);
+  color: white;
+}
