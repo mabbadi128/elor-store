@@ -66,36 +66,58 @@ export default function Home() {
 
       <Navbar />
 
-      {/* 1. قسم الهيرو (Hero) */}
-      <section className="relative min-h-[70vh] md:min-h-[90vh] flex flex-col justify-center px-6 md:px-16 pt-20 overflow-hidden group">
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black via-black/70 to-transparent z-10" />
-          <Image
-            src="/images/hero/10.jpg"
-            alt="ELOR Luxury UAE"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[center_70%] opacity-60 scale-105 group-hover:scale-110 transition-transform duration-[10000ms] ease-out"
-          />
-        </div>
+{/* 1. قسم الهيرو (Hero) */}
+{/* 1. قسم الهيرو (Hero) */}
+<section className="relative min-h-[88vh] md:min-h-[90vh] flex flex-col justify-end md:justify-center px-5 md:px-16 pt-24 pb-24 sm:pb-28 md:pb-0 overflow-hidden bg-black group">
+  {/* Background */}
+  <div className="absolute inset-0 z-0 h-full w-full overflow-hidden bg-black">
+    
+    {/* صورة الموبايل */}
+    <Image
+      src="/images/hero/11-mobile.png"
+      alt="ELOR Luxury UAE Mobile"
+      fill
+      priority
+      sizes="100vw"
+      className="block md:hidden object-cover object-center opacity-70 transition-transform duration-[10000ms] ease-out"
+    />
 
-        <div className="relative z-10 w-full md:w-1/2 text-center md:text-right mt-10 md:mt-0">
-          <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-[#fff5d1] text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-2">
-            ELOR
-          </h2>
-          <p className="text-white text-lg md:text-2xl tracking-[0.3em] mb-6 uppercase">
-            Luxury You Can Feel
-          </p>
-          <p className="text-gray-300 mb-10 max-w-sm mx-auto md:mx-0 text-base md:text-lg leading-relaxed">
-            اكتشفي سر الجمال الإماراتي الفاخر - منتجات مختارة بعناية لتمنح بشرتك العناية التي تستحقها بخلاصات طبيعية نادرة.
-          </p>
-          <Link href="/shop" className="inline-flex items-center justify-center bg-gold text-black px-10 md:px-14 py-4 rounded-full font-bold hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-95">
-            ابدئي رحلة الجمال
-          </Link>
-        </div>
-      </section>
+    {/* صورة اللابتوب والديسكتوب */}
+    <Image
+      src="/images/hero/11.png"
+      alt="ELOR Luxury UAE Desktop"
+      fill
+      priority
+      sizes="100vw"
+      className="hidden md:block object-contain object-center opacity-70 transition-transform duration-[10000ms] ease-out"
+    />
 
+    {/* Overlay للموبايل والديسكتوب */}
+    <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/65 to-black/10 md:bg-gradient-to-r md:from-black md:via-black/60 md:to-transparent" />
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 w-full md:w-1/2 text-center md:text-right -translate-y-8 md:translate-y-0">
+    <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-[#fff5d1] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-2">
+      ELOR
+    </h2>
+
+    <p className="text-white text-sm sm:text-base md:text-2xl tracking-[0.22em] md:tracking-[0.3em] mb-5 md:mb-6 uppercase">
+      Luxury You Can Feel
+    </p>
+
+    <p className="text-gray-300 mb-8 md:mb-10 max-w-xs sm:max-w-sm mx-auto md:mx-0 text-sm sm:text-base md:text-lg leading-relaxed">
+      اكتشفي سر الجمال الإماراتي الفاخر - منتجات مختارة بعناية لتمنح بشرتك العناية التي تستحقها بخلاصات طبيعية نادرة.
+    </p>
+
+    <Link
+      href="/shop"
+      className="inline-flex items-center justify-center bg-gold text-black px-8 md:px-14 py-3 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-95"
+    >
+      ابدئي رحلة الجمال
+    </Link>
+  </div>
+</section>
       {/* 2. قسم الميزات */}
       <section className="bg-black py-20 relative z-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -125,10 +147,10 @@ export default function Home() {
           {/* التصنيفات */}
           <div className="flex flex-wrap justify-center gap-10 md:gap-20 mb-20 relative z-30">
             {[
-              { name: "عناية بالجسم", img: "/images/products/1.jpg" },
-              { name: "عناية بالبشرة", img: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?q=80&w=400" },
-              { name: "عناية بالشعر", img: "/images/products/2.jpg" },
-              { name: "مجموعة الهدايا", img: "/images/products/3.jpg" }
+              { name: "عناية بالجسم", img: "/images/products/1.png" },
+              { name: "عناية بالبشرة", img: "/images/products/7.png"  },
+              { name: "عناية بالشعر", img: "/images/products/2.png" },
+              { name: "مجموعة الهدايا", img: "/images/products/3.png" }
             ].map((cat) => (
               <Link key={cat.name} href={`/shop?category=${cat.name}`} className="flex flex-col items-center group cursor-pointer">
                 <div className="w-24 h-24 md:w-36 md:h-36 rounded-full p-1 border border-white/10 group-hover:border-gold transition-all duration-500 mb-4 overflow-hidden">
@@ -193,7 +215,7 @@ export default function Home() {
           <div className="w-full md:w-1/2">
             <div className="relative w-full h-[350px] md:h-[500px] rounded-3xl overflow-hidden border border-white/10 group shadow-2xl shadow-gold/5">
               <Image 
-                src="/images/products/3.jpg" 
+                src="/images/products/3.png" 
                 alt="تغليف فاخر من ELOR" 
                 fill 
                 sizes="(max-width: 768px) 100vw, 50vw"

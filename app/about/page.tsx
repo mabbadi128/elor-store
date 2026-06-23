@@ -46,7 +46,7 @@ export default function AboutPage() {
           </div>
           <div className="order-1 lg:order-2 relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-gold/5">
             <Image 
-              src="/images/products/3.jpg" // صورة تعكس المكونات أو المختبر
+              src="/images/products/3.png" // صورة تعكس المكونات أو المختبر
               alt="رؤية ELOR"
               fill
               className="object-cover"
