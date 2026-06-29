@@ -75,13 +75,31 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gold/5 text-center">
-        <p className="text-gray-500 text-[10px] md:text-xs tracking-widest uppercase mb-2">
-          &copy; 2026 ELOR LUXURY COSMETICS. جميع الحقوق محفوظة.
-        </p>
-        <p className="text-gray-600 text-[9px] md:text-[10px]">
-          تم التطوير بواسطة <span className="text-gold/50 font-bold">Muhammed Abbadı</span>
-        </p>
-      </div>
+  <p className="text-gray-500 text-[10px] md:text-xs tracking-widest uppercase mb-2">
+    &copy; 2026 ELOR LUXURY COSMETICS. جميع الحقوق محفوظة.
+  </p>
+
+  <p className="text-gray-600 text-[9px] md:text-[10px]">
+    تم التطوير بواسطة{" "}
+    <a
+      href="https://wa.me/905365195807"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gold/60 font-bold hover:text-gold transition-colors"
+    >
+      Muhammed Abbadı
+    </a>
+  </p>
+
+  <p className="text-gray-600 text-[9px] md:text-[10px] mt-1">
+    <a
+      href="mailto:mabbadi128@gmail.com"
+      className="text-gold/50 hover:text-gold transition-colors"
+    >
+      mabbadi128@gmail.com
+    </a>
+  </p>
+</div>
     </footer>
   );
 }

@@ -21,23 +21,24 @@ export default function RegisterPage() {
     console.log("جاري محاولة الاتصال بـ Supabase...");
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          data: {
-            full_name: name,
-          },
-        },
-      });
+  const { data, error } = await supabase.auth.signUp({
+  email: email,
+  password: password,
+  options: {
+    data: {
+      full_name: name,
+    },
+    emailRedirectTo: `${window.location.origin}/login`,
+  },
+});
 
       if (error) {
         console.warn("خطأ من Supabase:", error.message);
         alert("حدث خطأ: " + error.message);
       } else {
         console.log("تمت العملية بنجاح:", data);
-        alert("تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول.");
-        window.location.href = "/login";
+       alert("تم إنشاء الحساب بنجاح! يرجى فتح بريدك الإلكتروني وتأكيد الحساب قبل تسجيل الدخول.");
+window.location.href = "/login";
       }
     } catch (err) {
       console.warn("خطأ غير متوقع:", err);

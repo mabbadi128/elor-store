@@ -55,11 +55,18 @@ export default function LoginPage() {
       });
 
       if (error) {
-        console.error("خطأ في تسجيل الدخول:", error.message);
-        alert("عذراً، الإيميل أو كلمة المرور غير صحيحة!");
-        setLoading(false);
-        return;
-      }
+  if (
+    error.message.includes("Email not confirmed") ||
+    error.message.includes("email_not_confirmed")
+  ) {
+    alert("يرجى تأكيد بريدك الإلكتروني أولاً من الرسالة التي وصلتك.");
+  } else {
+    alert("عذراً، الإيميل أو كلمة المرور غير صحيحة!");
+  }
+
+  setLoading(false);
+  return;
+}
 
       console.log("تم الدخول بنجاح:", data);
 
