@@ -68,72 +68,85 @@ export default function CartPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          {/* قائمة المنتجات - الجزء الأيمن */}
-          <div className="lg:col-span-2 space-y-6">
-            {items.map((item: any) => {
-              // حساب ما إذا كان المنتج يحتوي على سعر أصلي قديم (قبل الخصم) مخزن بالستور
-              const hasDiscount = item.originalPrice && item.originalPrice > item.price;
+       <div className="lg:col-span-2 space-y-6">
+  {items.map((item: any) => {
+    const hasDiscount =
+      item.originalPrice && item.originalPrice > item.price;
 
-              return (
-                <div key={item.id} className="bg-card border border-gold/10 p-4 rounded-lg flex items-center gap-4 md:gap-6 hover:border-gold/30 transition-all">
-                  {/* صورة المنتج */}
-                  <div className="w-20 h-20 md:w-28 md:h-28 bg-black rounded-md overflow-hidden flex-shrink-0">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-contain p-2" />
-                  </div>
-                  
-                  {/* تفاصيل المنتج */}
-                  <div className="flex-1">
-                    <h3 className="text-gold font-bold text-lg mb-1 tracking-wide">ELOR</h3>
-                    <h4 className="text-white text-sm md:text-base mb-3">{item.name}</h4>
-                    
-                    <div className="flex items-center gap-6">
-                      {/* أزرار التحكم بالكمية */}
-                      <div className="flex items-center border border-gold/20 rounded-sm">
-                        <button 
-                          onClick={() => updateQuantity(item.id, 'plus')}
-                          className="px-3 py-1 hover:text-gold transition-colors"
-                        >
-                          <Plus className="w-4 h-4" />
-                        </button>
-                        <span className="px-4 py-1 border-x border-gold/20 text-sm font-bold text-gold">
-                          {item.quantity}
-                        </span>
-                        <button 
-                          onClick={() => updateQuantity(item.id, 'minus')}
-                          className="px-3 py-1 hover:text-gold transition-colors disabled:text-gray-700"
-                          disabled={item.quantity <= 1}
-                        >
-                          <Minus className="w-4 h-4" />
-                        </button>
-                      </div>
+    return (
+      <div
+        key={item.id}
+        className="bg-card border border-gold/10 p-4 rounded-lg flex flex-col md:flex-row md:items-center gap-4 md:gap-6 hover:border-gold/30 transition-all overflow-hidden"
+      >
+        {/* صورة المنتج */}
+        <div className="w-20 h-20 md:w-28 md:h-28 bg-black rounded-md overflow-hidden flex-shrink-0">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-contain p-2"
+          />
+        </div>
 
-                      {/* زر الحذف */}
-                      <button 
-                          onClick={() => removeItem(item.id)}
-                          className="text-gray-500 hover:text-red-500 transition-colors flex items-center gap-1 text-xs"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                        <span className="hidden md:block">حذف</span>
-                      </button>
-                    </div>
-                  </div>
+        {/* تفاصيل المنتج */}
+        <div className="flex-1 min-w-0 w-full">
+          <h3 className="text-gold font-bold text-lg mb-1 tracking-wide">
+            ELOR
+          </h3>
 
-                  {/* 🌟 تعديل عرض السعر: إظهار السعر القديم والجديد بناءً على الكمية المحددة */}
-                  <div className="text-left flex flex-col items-end justify-center">
-                    <span className="font-bold text-gold md:text-xl">
-                      {formatCurrency(item.price * item.quantity)}
-                    </span>
-                    {hasDiscount && (
-                      <span className="text-xs text-gray-500 line-through mt-1">
-                        {formatCurrency(item.originalPrice * item.quantity)}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+          <h4 className="text-white text-sm md:text-base mb-3 break-words">
+            {item.name}
+          </h4>
+
+          <div className="flex items-center gap-4 flex-wrap">
+            {/* أزرار التحكم بالكمية */}
+            <div className="flex items-center border border-gold/20 rounded-sm">
+              <button
+                onClick={() => updateQuantity(item.id, "plus")}
+                className="px-3 py-1 hover:text-gold transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+
+              <span className="px-4 py-1 border-x border-gold/20 text-sm font-bold text-gold">
+                {item.quantity}
+              </span>
+
+              <button
+                onClick={() => updateQuantity(item.id, "minus")}
+                className="px-3 py-1 hover:text-gold transition-colors disabled:text-gray-700"
+                disabled={item.quantity <= 1}
+              >
+                <Minus className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* زر الحذف */}
+            <button
+              onClick={() => removeItem(item.id)}
+              className="text-gray-500 hover:text-red-500 transition-colors flex items-center gap-1 text-xs"
+            >
+              <Trash2 className="w-4 h-4" />
+              <span className="hidden md:block">حذف</span>
+            </button>
           </div>
+        </div>
 
+        {/* السعر */}
+        <div className="w-full md:w-auto border-t border-white/10 md:border-t-0 pt-3 md:pt-0 flex flex-col items-end justify-center shrink-0">
+          <span className="font-bold text-gold text-base md:text-xl whitespace-nowrap">
+            {formatCurrency(item.price * item.quantity)}
+          </span>
+
+          {hasDiscount && (
+            <span className="text-xs text-gray-500 line-through mt-1 whitespace-nowrap">
+              {formatCurrency(item.originalPrice * item.quantity)}
+            </span>
+          )}
+        </div>
+      </div>
+    );
+  })}
+</div>
           {/* ملخص الطلب المحدث - الجزء الأيسر */}
           <div className="relative">
             <div className="bg-card border border-gold/20 p-8 rounded-lg sticky top-32">
