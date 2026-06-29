@@ -76,72 +76,81 @@ export default function CartPage() {
     return (
       <div
         key={item.id}
-        className="bg-card border border-gold/10 p-4 rounded-lg flex flex-col md:flex-row md:items-center gap-4 md:gap-6 hover:border-gold/30 transition-all overflow-hidden"
+        className="bg-card border border-gold/10 p-4 rounded-lg hover:border-gold/30 transition-all overflow-hidden"
       >
-        {/* صورة المنتج */}
-        <div className="w-20 h-20 md:w-28 md:h-28 bg-black rounded-md overflow-hidden flex-shrink-0">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-contain p-2"
-          />
-        </div>
+        {/* القسم العلوي: الصورة + التفاصيل جنب بعض */}
+        <div className="flex items-center gap-4 md:gap-6">
+          {/* صورة المنتج */}
+          <div className="w-20 h-20 md:w-28 md:h-28 bg-black rounded-md overflow-hidden flex-shrink-0">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-contain p-2"
+            />
+          </div>
 
-        {/* تفاصيل المنتج */}
-        <div className="flex-1 min-w-0 w-full">
-          <h3 className="text-gold font-bold text-lg mb-1 tracking-wide">
-            ELOR
-          </h3>
+          {/* تفاصيل المنتج */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-gold font-bold text-base md:text-lg mb-1 tracking-wide">
+              ELOR
+            </h3>
 
-          <h4 className="text-white text-sm md:text-base mb-3 break-words">
-            {item.name}
-          </h4>
+            <h4 className="text-white text-sm md:text-base mb-3 break-words line-clamp-2">
+              {item.name}
+            </h4>
 
-          <div className="flex items-center gap-4 flex-wrap">
-            {/* أزرار التحكم بالكمية */}
-            <div className="flex items-center border border-gold/20 rounded-sm">
+            <div className="flex items-center gap-4 flex-wrap">
+              {/* أزرار التحكم بالكمية */}
+              <div className="flex items-center border border-gold/20 rounded-sm">
+                <button
+                  onClick={() => updateQuantity(item.id, "plus")}
+                  className="px-3 py-1 hover:text-gold transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+
+                <span className="px-4 py-1 border-x border-gold/20 text-sm font-bold text-gold">
+                  {item.quantity}
+                </span>
+
+                <button
+                  onClick={() => updateQuantity(item.id, "minus")}
+                  className="px-3 py-1 hover:text-gold transition-colors disabled:text-gray-700"
+                  disabled={item.quantity <= 1}
+                >
+                  <Minus className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* زر الحذف */}
               <button
-                onClick={() => updateQuantity(item.id, "plus")}
-                className="px-3 py-1 hover:text-gold transition-colors"
+                onClick={() => removeItem(item.id)}
+                className="text-gray-500 hover:text-red-500 transition-colors flex items-center gap-1 text-xs"
               >
-                <Plus className="w-4 h-4" />
-              </button>
-
-              <span className="px-4 py-1 border-x border-gold/20 text-sm font-bold text-gold">
-                {item.quantity}
-              </span>
-
-              <button
-                onClick={() => updateQuantity(item.id, "minus")}
-                className="px-3 py-1 hover:text-gold transition-colors disabled:text-gray-700"
-                disabled={item.quantity <= 1}
-              >
-                <Minus className="w-4 h-4" />
+                <Trash2 className="w-4 h-4" />
+                <span className="hidden md:block">حذف</span>
               </button>
             </div>
-
-            {/* زر الحذف */}
-            <button
-              onClick={() => removeItem(item.id)}
-              className="text-gray-500 hover:text-red-500 transition-colors flex items-center gap-1 text-xs"
-            >
-              <Trash2 className="w-4 h-4" />
-              <span className="hidden md:block">حذف</span>
-            </button>
           </div>
         </div>
 
-        {/* السعر */}
-        <div className="w-full md:w-auto border-t border-white/10 md:border-t-0 pt-3 md:pt-0 flex flex-col items-end justify-center shrink-0">
-          <span className="font-bold text-gold text-base md:text-xl whitespace-nowrap">
-            {formatCurrency(item.price * item.quantity)}
+        {/* خط فاصل والسعر تحته */}
+        <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span className="text-xs md:text-sm text-gray-500">
+            السعر
           </span>
 
-          {hasDiscount && (
-            <span className="text-xs text-gray-500 line-through mt-1 whitespace-nowrap">
-              {formatCurrency(item.originalPrice * item.quantity)}
+          <div className="flex flex-col items-end">
+            <span className="font-bold text-gold text-base md:text-xl whitespace-nowrap">
+              {formatCurrency(item.price * item.quantity)}
             </span>
-          )}
+
+            {hasDiscount && (
+              <span className="text-xs text-gray-500 line-through mt-1 whitespace-nowrap">
+                {formatCurrency(item.originalPrice * item.quantity)}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     );
