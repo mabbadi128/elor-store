@@ -75,23 +75,56 @@ export default function AdminOrdersPage() {
     }
   };
 
-  const updateOrderStatus = async (orderId: string, newStatus: string, reason: string) => {
-    const updateData: any = { status: newStatus };
-    if (newStatus === "ملغي") {
-      updateData.cancellation_reason = reason;
-    }
+const updateOrderStatus = async (
+  orderId: string,
+  newStatus: string,
+  reason: string
+) => {
+  const updateData: any = { status: newStatus };
 
-    const { error } = await supabase.from("orders").update(updateData).eq("id", orderId);
+  if (newStatus === "ملغي") {
+    updateData.cancellation_reason = reason;
+  } else {
+    updateData.cancellation_reason = null;
+  }
 
-    if (error) {
-      alert("حدث خطأ أثناء التحديث.");
-    } else {
-      setOrders(orders.map(order => 
-        order.id === orderId ? { ...order, status: newStatus, cancellation_reason: reason } : order
-      ));
-      setCancelModal(null);
-    }
-  };
+  console.log("ORDER ID:", orderId);
+  console.log("NEW STATUS:", newStatus);
+  console.log("UPDATE DATA:", updateData);
+
+  const { data, error } = await supabase
+    .from("orders")
+    .update(updateData)
+    .eq("id", orderId)
+    .select("id, status, cancellation_reason")
+    .maybeSingle();
+
+  if (error) {
+    console.error("Supabase update error:", error);
+    alert("حدث خطأ أثناء التحديث: " + error.message);
+    return;
+  }
+
+  if (!data) {
+    alert("لم يتم تعديل الطلب. تأكد أن order.id صحيح أو أن RLS يسمح بالتحديث.");
+    return;
+  }
+
+  setOrders((prevOrders) =>
+    prevOrders.map((order) =>
+      order.id === orderId
+        ? {
+            ...order,
+            status: data.status,
+            cancellation_reason: data.cancellation_reason,
+          }
+        : order
+    )
+  );
+
+  setCancelModal(null);
+  setCancelReason("");
+};
 
   const executeDelete = async () => {
     if (!deleteModal) return;

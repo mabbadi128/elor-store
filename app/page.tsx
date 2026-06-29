@@ -74,7 +74,7 @@ export default function Home() {
     
     {/* صورة الموبايل */}
     <Image
-      src="/images/hero/11-mobile.png"
+      src="/images/hero/12-mobile.png"
       alt="ELOR Luxury UAE Mobile"
       fill
       priority
@@ -97,26 +97,27 @@ export default function Home() {
   </div>
 
   {/* Content */}
-  <div className="relative z-10 w-full md:w-1/2 text-center md:text-right -translate-y-8 md:translate-y-0">
-    <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-[#fff5d1] text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-2">
-      ELOR
-    </h2>
+{/* Content */}
+<div className="relative z-10 w-full md:w-1/2 text-center md:text-right -translate-y-50 sm:-translate-y-36 md:translate-y-0">
+  <h2 className="english-bodoni text-transparent bg-clip-text bg-gradient-to-r from-gold to-[#fff5d1] text-6xl sm:text-7xl md:text-7xl lg:text-8xl font-bold leading-tight mb-3">
+    ELOR
+  </h2>
 
-    <p className="text-white text-sm sm:text-base md:text-2xl tracking-[0.22em] md:tracking-[0.3em] mb-5 md:mb-6 uppercase">
-      Luxury You Can Feel
-    </p>
+  <p className="english-bodoni text-white text-base sm:text-lg md:text-2xl tracking-[0.22em] md:tracking-[0.3em] mb-6 uppercase">
+    Luxury You Can Feel
+  </p>
 
-    <p className="text-gray-300 mb-8 md:mb-10 max-w-xs sm:max-w-sm mx-auto md:mx-0 text-sm sm:text-base md:text-lg leading-relaxed">
-      اكتشفي سر الجمال الإماراتي الفاخر - منتجات مختارة بعناية لتمنح بشرتك العناية التي تستحقها بخلاصات طبيعية نادرة.
-    </p>
+  <p className="text-gray-200 mb-8 md:mb-10 max-w-sm sm:max-w-md mx-auto md:mx-0 text-base sm:text-lg md:text-lg leading-[1.9]">
+    اكتشف سر الجمال الإماراتي الفاخر - منتجات مختارة بعناية لتمنح بشرتك العناية التي تستحقها بخلاصات طبيعية نادرة.
+  </p>
 
-    <Link
-      href="/shop"
-      className="inline-flex items-center justify-center bg-gold text-black px-8 md:px-14 py-3 md:py-4 rounded-full text-sm md:text-base font-bold hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-95"
-    >
-      ابدئي رحلة الجمال
-    </Link>
-  </div>
+  <Link
+    href="/shop"
+    className="inline-flex items-center justify-center bg-gold text-black px-9 md:px-14 py-3.5 md:py-4 rounded-full text-base md:text-base font-bold hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 active:scale-95"
+  >
+    ابدء رحلة الجمال
+  </Link>
+</div>
 </section>
       {/* 2. قسم الميزات */}
       <section className="bg-black py-20 relative z-20">

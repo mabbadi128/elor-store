@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  /* ألوان الهوية البصرية الفاخرة لـ ELOR */
   --color-black: #0a0a0a;
   --color-card: #141414;
   --color-gold: #c6a47e;
@@ -12,4 +11,10 @@
 body {
   background-color: var(--color-black);
   color: white;
+  font-family: var(--font-cairo-main), sans-serif;
+}
+
+.english-bodoni {
+  font-family: var(--font-bodoni-moda), serif !important;
+  font-optical-sizing: auto;
 }

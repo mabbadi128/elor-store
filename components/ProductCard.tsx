@@ -69,9 +69,9 @@ export default function ProductCard({
       {/* شارات المنتج الفاخرة (فوق الصورة) */}
       <div className="absolute top-6 right-6 z-20 flex flex-col gap-2 pointer-events-none">
         {hasDiscount && !is_coming_soon && (
-          <span className="bg-red-500 text-white text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-md shadow-lg animate-pulse font-mono">
-            -{activeDiscount}%
-          </span>
+          <span className="bg-red-500 text-white text-[14px] md:text-xs font-bold px-3 py-2 rounded-md shadow-lg animate-pulse font-mono">
+  {activeDiscount}%
+</span>
         )}
         
         {is_coming_soon && (
@@ -89,11 +89,11 @@ export default function ProductCard({
           toggleFavorite({ id: id as any, name, price: finalPrice, image, subtitle });
         }}
         aria-label="أضف للمفضلة"
-        className={`absolute top-6 left-6 z-20 backdrop-blur-md p-2 rounded-full transition-all duration-300 ${
-          isLiked 
-            ? "text-gold bg-black/80 opacity-100 translate-y-0 shadow-[0_0_10px_rgba(212,175,55,0.3)]" 
-            : "text-gray-400 bg-black/40 opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:text-gold hover:bg-black/80"
-        }`}
+       className={`absolute top-6 left-6 z-30 backdrop-blur-md p-2 rounded-full transition-all duration-300 ${
+  isLiked 
+    ? "text-gold bg-black/80 opacity-100 translate-y-0 shadow-[0_0_10px_rgba(212,175,55,0.3)]" 
+    : "text-gray-300 bg-black/50 opacity-100 translate-y-0 md:opacity-0 md:-translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 hover:text-gold hover:bg-black/80"
+}`}
       >
         <Heart className={`w-4 h-4 transition-colors duration-300 ${isLiked ? "fill-gold" : ""}`} />
       </button>
@@ -111,14 +111,16 @@ export default function ProductCard({
           />
         </div>
 
-        <div className="text-center mb-4">
-          <h3 className="text-gold font-bold text-xs tracking-[0.2em] mb-2 uppercase opacity-80">
-            {subtitle || "ELOR"}
-          </h3>
-          <h4 className="text-white text-sm md:text-base mb-3 h-12 line-clamp-2 leading-snug">{name}</h4>
-        </div>
-      </Link>
+        <div className="text-center mb-4 px-1" dir="rtl" lang="ar">
+  <h3 className="text-gold font-bold text-[13px] md:text-sm tracking-normal leading-[1.9] py-1 mb-1 opacity-80">
+    {subtitle || "ELOR"}
+  </h3>
 
+  <h4 className="text-white text-sm md:text-base leading-[1.9] py-1 mb-3 min-h-[54px] overflow-visible">
+    {name}
+  </h4>
+</div>
+</Link>
       {/* قسم السعر وزر الإضافة */}
       <div className="text-center mt-auto">
         
@@ -131,17 +133,17 @@ export default function ProductCard({
         )}
 
         {/* عرض الأسعار السليم */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="text-gold font-bold text-lg">
-            {formatCurrency(finalPrice)}
-          </span>
-          {hasDiscount && !is_coming_soon && (
-            <span className="text-xs md:text-sm text-gray-500 line-through font-medium">
-              {formatCurrency(price)}
-            </span>
-          )}
-        </div>
-        
+        <div className="flex items-center justify-center gap-2 mb-4 leading-[1.8] py-1">
+  <span className="text-gold font-bold text-lg leading-[1.8]">
+    {formatCurrency(finalPrice)}
+  </span>
+
+  {hasDiscount && !is_coming_soon && (
+    <span className="text-xs md:text-sm text-gray-500 line-through font-medium leading-[1.8]">
+      {formatCurrency(price)}
+    </span>
+  )}
+</div>
         {is_coming_soon ? (
           <button 
             disabled
@@ -166,7 +168,9 @@ export default function ProductCard({
   <div className="absolute inset-0 w-full h-full bg-gold translate-x-full rtl:-translate-x-full group-hover/btn:translate-x-0 transition-transform duration-500 ease-out -z-10" />
   
   <ShoppingBag className="w-4 h-4 relative z-10 group-hover/btn:text-black transition-colors duration-300" />
-  <span className="relative z-10 group-hover/btn:text-black transition-colors duration-300 font-bold">أضف للسلة</span>
+  <span className="relative z-10 group-hover/btn:text-black transition-colors duration-300 font-bold leading-[1.8] py-[2px]">
+  أضف للسلة
+</span>
 </button>
         )}
       </div>

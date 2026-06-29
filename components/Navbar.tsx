@@ -63,7 +63,9 @@ export default function Navbar() {
         {/* الجزء الأوسط: الشعار */}
         <div className="flex flex-col items-center justify-center w-1/2 md:w-1/3 text-center">
           <Link href="/">
-            <h1 className="text-2xl md:text-3xl font-bold tracking-[0.2em] text-gold cursor-pointer">ELOR</h1>
+       <h1 className="english-bodoni text-2xl md:text-3xl font-bold tracking-[0.2em] text-gold cursor-pointer">
+  ELOR
+</h1>
           </Link>
         </div>
 

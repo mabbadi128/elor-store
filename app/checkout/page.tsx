@@ -165,33 +165,34 @@ const handlePayment = async (e: React.FormEvent) => {
   const finalAddress = `${formData.emirate} - ${formData.address} [طريقة الدفع: ${methodText}]`;
 
   // 3. حفظ الطلب في قاعدة البيانات
-  const orderData = {
-    user_id: user.id, 
-    customer_name: formData.name,
-    customer_phone: formData.phone,
-    customer_address: finalAddress,
-    total_price: finalPrice, 
-    items: cart,
-    payment_status: "لم يتم الدفع",
-    applied_coupon: couponData ? couponData.code : null
-  };
+const orderData = {
+  user_id: user.id,
+  customer_name: formData.name,
+  customer_phone: formData.phone,
+  customer_address: finalAddress,
+  total_price: finalPrice,
+  items: cart,
+  status: "قيد الانتظار",
+  payment_status: "لم يتم الدفع",
+  applied_coupon: couponData ? couponData.code : null,
+};
 
-  const { error } = await supabase.from('orders').insert([orderData]);
+const { error } = await supabase.from("orders").insert(orderData);
 
-  // 4. تحديث عداد الكوبون
-  if (couponData) {
-    await supabase
-      .from("coupons")
-      .update({ used_count: (couponData.used_count || 0) + 1 })
-      .eq("id", couponData.id);
-  }
+if (error) {
+  console.error("خطأ إنشاء الطلب:", error.message);
+  alert("حدث خطأ، يرجى المحاولة مرة أخرى.");
+  setIsSubmitting(false);
+  return;
+}
 
-  if (error) {
-    alert("حدث خطأ، يرجى المحاولة مرة أخرى.");
-    setIsSubmitting(false);
-    return;
-  }
-
+// 4. تحديث عداد الكوبون بعد نجاح الطلب فقط
+if (couponData) {
+  await supabase
+    .from("coupons")
+    .update({ used_count: (couponData.used_count || 0) + 1 })
+    .eq("id", couponData.id);
+}
   // 5. إرسال للواتساب باستخدام السعر النهائي (finalPrice)
   if (paymentMethod === "whatsapp") {
     // تأكد أنك مررت finalPrice هنا:
@@ -390,7 +391,7 @@ const finalTotal = getTotalPrice() - discountAmount;
                 </div>
 
                 <div className="mt-6 p-4 rounded-xl border border-white/5 bg-black/40 text-xs text-gray-400">
-                  {paymentMethod === "cod" && "💡 سيتم إرسال طلبكِ فوراً لمراجعة وتدقيق الإدارة وتأكيده تمهيداً للشحن البنكي السريع لباب المنزل."}
+                  {paymentMethod === "cod" && " ✨ سيتم تأكيد طلبكم وتجهيزه للشحن خلال وقت قصير. شكراً لثقتكم بـ ELOR."}
                   {paymentMethod === "whatsapp" && "💡 سيتم فتح واجهة الواتساب المباشرة مع خدمة العملاء لإنهاء وتأكيد الفاتورة وتجهيز منتجات جمالكِ."}
                 </div>
               </div>
