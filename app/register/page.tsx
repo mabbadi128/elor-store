@@ -124,8 +124,7 @@ window.location.href = "/login";
 
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300">
-                كلمة المرور يجب أن تكون 6 أحرف على الأقل
-              </label>
+كلمة المرور يجب أن تكون 8 أحرف على الأقل              </label>
 
               <div className="relative">
                 <input
@@ -133,7 +132,7 @@ window.location.href = "/login";
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  minLength={6}
+                  minLength={8}
                   className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pr-12 pl-12 outline-none focus:border-gold transition-colors text-white"
                   placeholder="••••••••"
                 />
